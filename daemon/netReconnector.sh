@@ -11,7 +11,7 @@ test -e $LogFile || sudo touch $LogFile
 
 time=$(date "+%Y/%m/%d %H:%M:%S")
 
-ret=$(ping -c 2 -W 1 -I $NetCard $PingTarget | grep 'received' | cut -d ',' -f 2 | cut -d ' ' -f 2)
+ret=$(ping -c 4 -W 1 -I $NetCard $PingTarget | grep 'received' | cut -d ',' -f 2 | cut -d ' ' -f 2)
 
 if [ "$ret" = "0" -o -z "$ret" ]; then
     echo "Try Reconnect: $?, $time" | tee -a $LogFile
@@ -19,7 +19,7 @@ if [ "$ret" = "0" -o -z "$ret" ]; then
 else
     if [ "$LogAll" = "true" ]; then
         #echo "Network is ok, ret = $ret, $time" | tee -a $LogFile
-        echo "Network is ok, ret = $ret, $time" | tee -a $LogFile
+        echo "Network is ok, ret = $ret, $time"
     fi
 fi
 
