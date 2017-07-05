@@ -16,23 +16,25 @@ fi
 sudo umount -l /mnt/harddisk
 sudo umount -l /mnt/harddisk2
 
+time=$(date "+%Y/%m/%d %H:%M:%S")
+
 ret=$(sudo fdisk -l | grep sda)
 if [ "$ret" != "" ]; then
     echo "mount sda, $time" | tee -a $LogFile
-    sudo mount -t ntfs /dev/sda5 /mnt/harddisk
-    sudo mount -t ntfs /dev/sda6 /mnt/harddisk2
+    sudo mount -t ntfs /dev/sda6 /mnt/harddisk
+    sudo mount -t ntfs /dev/sda5 /mnt/harddisk2
 fi
 ret=$(sudo fdisk -l | grep sdb)
 if [ "$ret" != "" ]; then
     echo "mount sdb, $time" | tee -a $LogFile
-    sudo mount -t ntfs /dev/sdb5 /mnt/harddisk
-    sudo mount -t ntfs /dev/sdb6 /mnt/harddisk2
+    sudo mount -t ntfs /dev/sdb6 /mnt/harddisk
+    sudo mount -t ntfs /dev/sdb5 /mnt/harddisk2
 fi
 ret=$(sudo fdisk -l | grep sdc)
 if [ "$ret" != "" ]; then
     echo "mount sdc, $time" | tee -a $LogFile
-    sudo mount -t ntfs /dev/sdc5 /mnt/harddisk
-    sudo mount -t ntfs /dev/sdc6 /mnt/harddisk2
+    sudo mount -t ntfs /dev/sdc6 /mnt/harddisk
+    sudo mount -t ntfs /dev/sdc5 /mnt/harddisk2
 fi
 
 # mount --bind means that when we access the second folder, in fact we are accessing the first folder 
